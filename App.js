@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Keyboard } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Keyboard, ScrollView  } from 'react-native';
 import Task from './components/Task'
 
 export default function App() {
@@ -37,7 +37,7 @@ export default function App() {
       <View style={styles.taskWrapper}>
       <Text style={styles.sectionTitle}>To-do List</Text>
 
-        <View style={styles.items}>
+        <ScrollView style={styles.items} contentContainerStyle={{ paddingBottom: 100 }} >
           {/* Added tasks go here */}
           {
           taskItems.map((item, index) => (
@@ -54,7 +54,7 @@ export default function App() {
           
 
           }
-        </View>
+        </ScrollView>
 
       </View>
 
