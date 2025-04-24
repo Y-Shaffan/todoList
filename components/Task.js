@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   squareCompleted: {
     opacity: 1,
-    backgroundColor: '#55BCF6',
+    backgroundColor: '#4CAF50',
   },
   checkmark: {
     color: 'white',
