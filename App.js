@@ -15,11 +15,11 @@ export default function App() {
 
     if (editingIndex !== null) {
       const updatedTasks = [...taskItems];
-      updatedTasks[editingIndex] = task;
+      updatedTasks[editingIndex] = { ...updatedTasks[editingIndex], task: task };
       setTaskItems(updatedTasks);
       setEditingIndex(null);
     } else {
-      setTaskItems([...taskItems, task]);
+      setTaskItems([...taskItems, { task: task, completed: false }]);
     }
     
     setTask(null);
@@ -30,6 +30,12 @@ export default function App() {
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
   }
+
+  const toggleTaskComplete = (index) => {
+    const updatedTasks = [...taskItems];
+    updatedTasks[index].completed = !updatedTasks[index].completed;
+    setTaskItems(updatedTasks);
+  };
 
   return (
     <View style={styles.container}>
@@ -43,9 +49,11 @@ export default function App() {
           taskItems.map((item, index) => (
             <Task
               key={index}
-              text={item}
+              text={item.task}
+              completed={item.completed}
+              onToggleComplete={() => toggleTaskComplete(index)}
               onEdit={() => {
-                setTask(item);
+                setTask(item.task);
                 setEditingIndex(index);
               }}
               onDelete={() => completeTask(index)}
